@@ -1,0 +1,680 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Raphael Solis – Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #14141a;
+      --surface: #1e1e27;
+      --text: #f2f2f7;
+      --muted: #a7a7b8;
+      --accent: #19c2c9;
+      --accent-2: #8a4fff;
+      --dots: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Ccircle cx='2' cy='2' r='1.5' fill='%2319c2c9' fill-opacity='.3'/%3E%3C/svg%3E");
+      box-sizing: border-box;
+      padding-top: env(safe-area-inset-top,0px);
+      padding-bottom: env(safe-area-inset-bottom,0px);
+    }
+    
+    :root {
+      color-scheme: dark;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 80px;
+    }
+
+    body {
+      margin: 0;
+      background-color: var(--bg);
+      color: var(--text);
+      font: 400 1rem/1.6 "Poppins", system-ui, sans-serif;
+    }
+
+    h1 {
+      font-family: "Poppins", sans-serif;
+      font-size: clamp(1.5rem, 4vw, 2.3rem);
+      line-height: 1.25;
+      margin: 0 0 14px;
+    }
+
+    h2 {
+      font-size: 1.9rem;
+      margin: 0 0 20px;
+      letter-spacing: 2px;
+    }
+
+    h3 {
+      font-size: 1.15rem;
+      margin: 0 0 6px;
+    }
+
+    h4 {
+      font-size: 1rem;
+      color: var(--accent);
+      margin: 0 0 8px;
+    }
+
+    h5 {
+      font-size: .95rem;
+      margin: 0;
+    }
+
+    h6 {
+      font-size: .8rem;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--muted);
+      margin: 0 0 6px;
+    }
+
+    p {
+      margin: 0 0 12px;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    del {
+      text-decoration: line-through;
+    }
+
+    .kicker {
+      text-decoration: overline;
+      letter-spacing: 4px;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    [title] {
+      cursor: help;
+    }
+
+    a[href^="mailto"] {
+      font-weight: 600;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    .right {
+      text-align: right;
+    }
+
+    section {
+      position: static;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 56px 20px;
+      min-height: 200px;
+    }
+
+    #navbar {
+      position: sticky;
+      top: env(safe-area-inset-top,0px);
+      z-index: 10;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      padding: 10px 20px;
+      background-color: var(--bg);
+      border-bottom: 2px solid var(--surface);
+    }
+
+    .logo {
+      font-family: "Great Vibes", cursive;
+      font-size: 2.2rem;
+      color: var(--text);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .nav-links a {
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: .9rem;
+      font-weight: 600;
+    }
+
+    .nav-links a:hover {
+      background: var(--accent);
+      color: #0b0b10;
+      text-decoration: none;
+    }
+
+    .nav-links a {
+      white-space: nowrap;
+    }
+
+    .hero {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      background-image: var(--dots);
+      background-repeat: repeat;
+    }
+
+    .avatar-wrap {
+      position: relative;
+      flex: none;
+    }
+
+    .avatar {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 5px solid var(--accent);
+      object-fit: cover;
+    }
+
+    .badge {
+      position: absolute;
+      right: 0;
+      bottom: 8px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-weight: 700;
+      color: #fff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2)) no-repeat;
+    }
+
+    .bio {
+      text-align: justify;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .btn {
+      display: inline-block;
+      min-width: 140px;
+      text-align: center;
+      padding: 12px 26px;
+      margin: 6px 6px 6px 0;
+      border: 0;
+      border-radius: 999px;
+      color: #fff;
+      font: 600 1rem "Poppins", sans-serif;
+      cursor: pointer;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+
+    .btn.alt {
+      background: transparent;
+      border: 2px solid var(--accent);
+      color: var(--accent);
+    }
+
+    .scroll {
+      overflow-x: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: var(--surface);
+    }
+
+    caption {
+      padding: 10px;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    th, td {
+      padding: 12px 14px;
+      border: 1px solid var(--bg);
+      text-align: left;
+    }
+
+    thead th {
+      background: var(--accent);
+      color: #0b0b10;
+    }
+
+    tfoot th {
+      text-align: center;
+      background: var(--accent-2);
+      color: #fff;
+    }
+
+    .lv {
+      font-weight: 700;
+      border-left-width: 6px;
+      border-left-color: var(--accent);
+    }
+
+    .elem {
+      border-left-style: dotted;
+    }
+
+    .jhs {
+      border-left-style: dashed;
+    }
+
+    .shs {
+      border-left-style: double;
+    }
+
+    .col {
+      border-left-style: solid;
+    }
+
+    .two {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .skills-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .skills-row h3 {
+      font-size: 1.1rem;
+    }
+
+    ul.bullets {
+      margin: 0;
+      padding-left: 22px;
+      list-style: disc;
+    }
+
+    .bullets li {
+      margin: 6px 0;
+    }
+
+    .bullets li::marker {
+      color: var(--accent);
+    }
+
+    ol.certs {
+      padding-left: 24px;
+      display: grid;
+      gap: 14px;
+    }
+
+    .cert {
+      padding: 14px 18px;
+      background-color: var(--surface);
+      border: 2px solid;
+      border-color: var(--accent) var(--accent-2);
+      border-style: solid dashed;
+      border-width: 2px 4px;
+      border-radius: 10px 25px;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      min-height: 200px;
+      margin: 5px 0 10px;
+      padding: 0 0 16px;
+      background-color: var(--surface);
+      border: 2px solid var(--surface);
+      border-width: 5px 2px 2px;
+      border-color: var(--accent) var(--surface) var(--accent-2);
+      border-radius: 5px 15px 30px;
+    }
+
+    .thumb {
+      height: 130px;
+      margin-bottom: 12px;
+      border-radius: 14px 14px 0 0;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    }
+
+    .thumb-img {
+      display: block;
+      width: 100%;
+      height: 130px;
+      margin-bottom: 12px;
+      border-radius: 14px 14px 0 0;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .card h3, .card p, .card a {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .card p {
+      padding-top: 2px;
+      padding-bottom: 0;
+      color: var(--muted);
+    }
+
+    fieldset {
+      margin: 0;
+      padding: 20px;
+      border: 2px groove var(--accent);
+      border-top-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+    }
+
+    legend {
+      padding: 0 10px;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    label {
+      display: block;
+      margin: 10px 0 4px;
+      font-weight: 600;
+      font-size: .9rem;
+    }
+
+
+    .choice {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 16px;
+    }
+
+    .choice label {
+      display: inline;
+      margin: 0;
+      font-weight: 400;
+    }
+
+    .grid2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 14px;
+    }
+
+    .info li {
+      margin: 10px 0 10px 4px;
+      list-style: square;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: var(--muted);
+      background-image: var(--dots);
+      background-repeat: repeat-x;
+      background-color: var(--surface);
+      border: 3px outset var(--accent);
+      border-width: 3px 0 0;
+      border-style: ridge;
+    }
+
+    #to-top {
+      position: fixed;
+      right: 16px;
+      bottom: calc(16px + env(safe-area-inset-bottom,0px));
+      width: 46px;
+      height: 46px;
+      line-height: 46px;
+      text-align: center;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #0b0b10;
+      font-weight: 700;
+      border: 3px inset var(--accent-2);
+    }
+
+    @media only screen and (min-width: 1001px) {
+      section {
+        padding: 72px 20px;
+      }
+    }
+
+    @media only screen and (min-width: 601px) and (max-width: 1000px) {
+      .cards {
+        grid-template-columns: 1fr 1fr;
+      }
+      .hero {
+        gap: 28px;
+      }
+      .avatar {
+        width: 170px;
+        height: 170px;
+      }
+      h2 {
+        font-size: 1.7rem;
+      }
+    }
+
+    @media only screen and (max-width: 600px) {
+      .nav-links {
+        width: 100%;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding-top: 10px;
+      }
+      .hero {
+        flex-direction: column;
+        text-align: center;
+      }
+      .two, .grid2, .cards {
+        grid-template-columns: 1fr;
+      }
+      .bio {
+        text-align: left;
+      }
+    }
+
+    @media only screen and (max-height: 500px) {
+      #navbar {
+        position: static;
+      }
+    }
+
+    @media only screen and (min-height: 1001px) {
+      section {
+        min-height: 320px;
+      }
+    }
+  </style>
+</head>
+<body id="top">
+
+<header id="navbar">
+  <a class="logo" href="#top">Raphael Solis</a>
+  <nav id="menu" class="nav-links">
+    <a href="#about">About</a>
+    <a href="#education">Education</a>
+    <a href="#skills">Skills</a>
+    <a href="#certificates">Certificates</a>
+    <a href="#projects">Projects</a>
+    <a href="index.html#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+  <section id="about" class="hero">
+    <div class="avatar-wrap">
+      <a href="https://github.com/RaphaelSolis" target="_blank">
+        <img class="avatar" src="ProfilePhoto.JPG" alt="Raphael Solis" title="Raphael Solis – open GitHub" width="200" height="200"/>
+      </a>
+      <span class="badge" style="font-size:.8rem;">BSIS</span>
+    </div>
+    <div>
+      <p class="kicker">Hi, I’m Raphael!</p>
+      <h1>2<sup>nd</sup> Year BSIS Student at Dr. Filemon C. Aguilar Memorial College of Las Piñas</h1>
+      <p class="bio">
+        Passionate about <strong>systems development</strong>, <em>story and poetry writing</em>, <b>Linux environment management</b>, <strong> photography, </strong>and <i>retro digital hardware</i>.
+      </p>
+      <a class="btn" href="#projects">View Projects</a>
+      <a class="btn alt" href="tel:+639959279910">Call Me</a>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2>Education</h2>
+    <div class="scroll">
+      <table>
+        <caption>My School Journey</caption>
+        <thead>
+          <tr>
+            <th>Level</th>
+            <th>School</th>
+            <th>Years</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="lv elem">
+              <h5>Elementary</h5>
+            </td>
+            <td>Col E. De Leon Elementary School</td>
+            <td>2018 – 2019</td>
+          </tr>
+          <tr>
+            <td class="lv jhs">
+              <h5>Junior High</h5>
+            </td>
+            <td>St. Michael School Inc.</td>
+            <td>2022 – 2023</td>
+          </tr>
+          <tr>
+            <td class="lv shs" rowspan="2">
+              <h5>Senior High</h5>
+            </td>
+            <td>STI College Las Piñas</td>
+            <td>2023 – 2025</td>
+          </tr>
+          <tr>
+            <td colspan="2">
+              <h6>Track: Science, Technology, Engineering & Mathematics</h6>
+            </td>
+          </tr>
+          <tr>
+            <td class="lv col">
+              <h5>College</h5>
+            </td>
+            <td>Dr. Filemon C. Aguilar Memorial College of Las Piñas – BS Information Systems (BSIS)</td>
+            <td>2025 – Present</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section id="skills">
+    <h2>Skills</h2>
+    <div class="skills-row">
+      <div>
+        <h3>Hard Skills</h3>
+        <h4>Technical</h4>
+        <ul class="bullets">
+          <li>Systems Development</li>
+          <li>Linux Environment</li>
+          <li>Java</li>
+          <li>Retro Digital Hardware</li>
+          <li>C++</li>
+          <li>Python</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Soft Skills</h3>
+        <h4>Personal</h4>
+        <ul class="bullets">
+          <li>Communication</li>
+          <li>Teamwork</li>
+          <li>Problem Solving</li>
+          <li>Time Management</li>
+          <li>Adaptability</li>
+          <li>Flexibility</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="certificates">
+    <h2>Certificates</h2>
+    <ol class="certs">
+      <li class="cert">
+        <h3>Leadership Training Seminar </h3>
+        <h6>Issuer: Ms. Griselda Gutierrez • December 2023</h6>
+        <a href="cert1.jpg" title="Image of Certificate">View certificate</a>
+      </li>
+      <li class="cert">
+        <h3>Psychological First Aid: Caring for Mental Health in Times of Crisis</h3>
+        <h6>Issuer: Dr Maria Corazon Palomique, RGC • January 2026</h6>
+        <a href="cert2.jpg" title="Image of Certificate">View certificate</a>
+      </li>
+    </ol>
+  </section>
+
+  <section id="projects">
+    <h2>Projects</h2>
+    <div class="cards">
+      <article class="card">
+        <img class="thumb-img" src="contactform.jpg" alt="Screenshot of the Contact Form page" width="400" height="130"/>
+        <h3>Contact Form Page</h3>
+        <p>Contact form page built with HTML and CSS.</p>
+        <a href="https://github.com/RaphaelSolis/Contact-Form" target="_blank">View on GitHub</a>
+      </article>
+
+      <article class="card">
+        <img class="thumb-img" src="hanggangpanaginip.jpg" alt="Output of the short animation" style="width: 100%; height: 180px; object-fit: cover; object-position: center; border-top-left-radius: 12px; border-top-right-radius: 12px;"/>
+        <h3>Hanggang Panaginip</h3>
+        <p>A full story animation built with full Python.</p>
+        <a href="https://github.com/RaphaelSolis/Hanggang-Panaginip" target="_blank">View on GitHub</a>
+      </article>
+
+      <article class="card">
+        <img class="thumb-img" src="ubtouch.jpg" alt="Screenshot of the actual device running the operating system." style="width: 100%; height: auto; max-height: 220px; object-fit: contain; background-color: #000000; border-top-left-radius: 12px; border-top-right-radius: 12px;"/>
+        <h3>Ubuntu Touch</h3>
+        <p>Ubuntu-based distribution ported to the Samsung S20 series (Exynos 990 family).</p>
+        <a href="https://github.com/RaphaelSolis/Ubuntu-Touch-Y2S" target="_blank">View on GitHub</a>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="two">
+      <div>
+        <ul class="info">
+          <li>Email: <a href="mailto:raphaelsolis9@gmail.com">raphaelsolis9@gmail.com</a></li>
+          <li>GitHub: <a href="https://github.com/RaphaelSolis" target="_blank">github.com/RaphaelSolis</a></li>
+          <li>Phone: <a href="tel:+639959279910">09959279910</a></li>
+          <li>School: Dr. Filemon C. Aguilar Memorial College of Las Piñas</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 <small>Raphael Solis • Portfolio</small></p>
+</footer>
+
+<a id="to-top" href="#top" title="Back to top">↑</a>
+
+</body>
+</html>
